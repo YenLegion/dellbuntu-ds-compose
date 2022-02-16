@@ -1,0 +1,46 @@
+services:
+  speedtest:
+    image: henrywhitaker3/speedtest-tracker:dev
+    environment:
+            - AUTH=false       
+#  Shinobi:
+#    container_name: Shinobi
+#    image: shinobisystems/shinobi:dev
+#    volumes:
+#      - /dev/shm/Shinobi/streams:/dev/shm/streams:rw
+#      - $HOME/.config/appdata/Shinobi/config:/config:rw
+#      - $HOME/.config/appdata/Shinobi/customAutoLoad:/home/Shinobi/libs/customAutoLoad:rw
+#      - $HOME/.config/appdata/Shinobi/database:/var/lib/mysql:rw
+#      - $HOME/.config/appdata/Shinobi/videos:/home/Shinobi/videos:rw
+#      - $HOME/.config/appdata/Shinobi/plugins:/home/Shinobi/plugins:rw
+#      - /etc/localtime:/etc/localtime:ro
+ #   ports:
+ #     - 8080:8080/tcp
+  searx:
+    image: searx/searx
+    container_name: searx
+    volumes:
+      - $HOME/.config/appdata/searx:/etc/searx
+    ports:
+      - 8085:8080
+    environment:
+      - BASE_URL=http://192.168.0.108:8085/'
+#  ispyagentdvr:
+ #   container_name: ispyagentdvr
+  #  image: doitandbedone/ispyagentdvr:latest
+#    ports:
+#      - 8090:8090
+#      - 3478:3478/udp
+#      - 50000-50010:50000-50010/udp
+#    volumes:
+#      - $HOME/.config/appdata/ispyagentdvr/config/:/agent/Media/XML/
+#      - $HOME/.config/appdata/ispyagentdvr/media/:/agent/Media/WebServerRoot/Media/
+#      - $HOME/.config/appdata/ispyagentdvr/commands:/agent/Commands/
+  uptime-kuma:
+    container_name: uptime-kuma
+    image: 'louislam/uptime-kuma:1'
+    volumes:
+      - $HOME/.config/appdata/uptime-kuma:/app/data
+    ports:
+      - '3001:3001'
+    restart: always
